@@ -1,0 +1,991 @@
+openapi: 3.0.0
+
+info:
+  title: "cmdty North America Grain Price API"
+  description: "Access best-in-class intraday and historical cash grain prices for North America using Barchart's REST-ful web service"
+  version: 1.0.0
+
+servers:
+  - description: "Production"
+    url: "http://ondemand.websol.barchart.com/"
+
+
+
+paths:
+  /getGrainBids:
+    get:
+      tags:
+        - GrainBids
+      summary: Resturns a list of cashbids grouped by locations.
+      description: >
+                     The getGrainBids API provides cashbid data and reference data.
+                     Cashbid data can be requested for grain buying locations, for geographic coordinates and radius, for zip code and radius, and for a specified county.
+                     Cashbid data can be filtered by commodity standard name, by delivery window, by number of locations will be returned, and by maximum number of bids per commodity for each locations.
+                     Reference data contains grain buying locations and commodity standard names, providing valid values in use for requesting cash bid data.
+                      Reference data can be requested for geographic coordinates and radius. If no geographic coordinates are given, reference data will return all valid values by default.
+      parameters:
+        - in: query
+          name: apikey
+          description: The authorized API Key
+          schema:
+            type: string
+            example: "your_api_key"
+          required: true
+        - in: query
+          name: requestType
+          description: >
+            The type of request that is being requested in order to determine the type of data to be returned.
+            Valid Values: "bids", "commodities", "locations".
+            Default Value: "bids"
+          schema:
+            type: string
+            enum: [bids, commodities, locations]
+            example: bids
+            default: bids
+          required: false
+        - in: query
+          name: location
+          description: >
+            A location id or a code identifies a or multiple grain buying location(s) that cash bid will be returned for.
+            A valid code consist of multiple location ids separated by a comma, and the code can contain up to 100 locations.
+            A list of valid location ids can be retrieved by using this API with input: requestType = location.
+            location and several other inputs -geographic coordinates, zipCode, maxDistance, county, totalLocations- are mutually exclusive.
+          schema:
+            type: array
+            items:
+              type: integer
+          required: false
+        - in: query
+          name: latitude
+          description: >
+            The latitude of a valid geographic coordinates to define the center of area that cashbid will be returned for.
+            The `latitude` Must be used together with `longitude`.
+            Geographic coordinates and Zipcode are mutually exclusive.
+          schema:
+            type: number
+            example: 41.6945319
+          required: false
+        - in: query
+          name: longitude
+          description: >
+            The longitude of a valid geographic coordinates to define the center of area that cashbid will be returned for.
+            Geographic coordinates and Zipcode are mutually exclusive.
+          schema:
+            type: number
+            example: -94.3611938
+          required: false
+        - in: query
+          name: zipCode
+          description: >
+            A valid US or Canadian zip code to define the area that cash bids orginate from.
+            Default Value: 60606
+            `zipCode` and Geographic coordinates  are mutually exclusive.
+          schema:
+            type: integer
+            example: 60611
+          required: false
+        - in: query
+          name: maxDistance
+          description: >
+            The maximum distance from searched zipcode or the requested geo coordinates in miles. This input helps to
+            define the area that cash bids will be returned from.
+            Default value is 100.
+            Maximum value is 250.
+          schema:
+            type: integer
+            example: 100
+          required: false
+        - in: query
+          name: county
+          description: >
+            A valid string code which represents the concatenation of county name and state code seperated by a hyphen.
+          schema:
+            type: string
+            example: "BOONE COUNTY-IA"
+          required: false
+        - in: query
+          name: fipsCode
+          description: >
+            A concatenation of state FIPS code and county FIPS code without separator to define the county that cash bids will be returned for.
+            A list of possible values can be found at (here)[https://www.nass.usda.gov/Data_and_Statistics/County_Data_Files/Frequently_Asked_Questions/county_list.txt].
+          schema:
+            type: integer
+            example: 17053
+          required: false
+        - in: query
+          name: commodityName
+          description: >
+            A standard commodity name or a name list that separated by pipe "|" to filter cashbid. Note that the input need to be encoded in UTF-8.
+            A list of valid commodity names can be retrieved by using this API with input: requestType = commodities.
+          schema:
+            type: string
+            example: "Soybeans|Corn (#2 Yellow)"
+          required: false
+        - in: query
+          name: deliveryStart
+          description: >
+            The start date for the delivery period for qualified bids, formatted in YYYYMMDD.
+            If this parameter is given, only cash bids whose start delivery date not prior than given deliveryStart will be returned.
+          schema:
+            type: string
+            example: "20201101"
+          required: false
+        - in: query
+          name: deliveryEnd
+          description: >
+            The end date for the delivery period for qualified bids, formatted in YYYYMMDD.
+            If this parameter is given, only cash bids whose end delivery date no later than given deliveryEnd will be returned.
+          schema:
+            type: string
+            example: "20201231"
+          required: false
+        - in: query
+          name: totalLocations
+          description: >
+            The maximum number of locations to be returned based of the zip code provided by the user.
+            Default value is 30.
+          schema:
+            type: integer
+            example: 30
+          required: false
+        - in: query
+          name: getAllBids
+          description: >
+            Return all cash bids for each location.
+            Default Value: false
+          schema:
+            type: boolean
+            example: false
+          required: false
+        - in: query
+          name: bidsPerCom
+          description: >
+            The maximum number of cash bids to be returned for each commodity per location.
+            This parameter should be set to the maximum number of cash bids the user wishes to be returned.
+            Default Value: 2
+          schema:
+            type: integer
+            example: 2
+          required: false
+        - in: query
+          name: numOfDecimals
+          description: >
+            The level of precision in decimal places of price and basis to be returned.
+            Default Value: 2
+          schema:
+            type: integer
+            example: 2
+          required: false
+        - in: query
+          name: fields
+          description: >
+            Additional as per-requested fields that the user can define. Requested fields should be separated by a comma.
+            Valid Values: "county_code", "fips_code", "elevatorId", and "crop_district"
+          schema:
+            type: string
+            enum: [county_code, fips_code, elevatorId,crop_district]
+            example: county_code
+          required: false
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetGrainBidsResponse'
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+      externalDocs:
+        description: Learn more about user operations provided by this API.
+        url: https://www.barchart.com/ondemand/api/getGrainBids
+
+  /getGrainInstruments:
+    get:
+      summary: Retrieve Alert.
+      description: Retrieves an existing alert.
+      security:
+        - JWT: []
+      parameters:
+        - name: alert_id
+          description: The UUID for the alert.
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            example: "6bc32e9d-50ba-4f26-a633-a3cb3884b504"
+      responses:
+        '200':
+          description: "A JSON document, conforming to the alert schema, representing requested alert."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alert'
+
+        '404':
+          description: "The alert does not exist."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "no data"
+
+  /getQuote:
+    get:
+      summary: "Retrieve Alerts For User."
+      description: "Retrieves all alerts for a single user."
+      security:
+        - JWT: []
+      parameters:
+        - name: user_id
+          required: true
+          in: path
+          description: "The unique identifier of the user (in the :alert_system)"
+          schema:
+            type: string
+
+        - name: alert_system
+          required: true
+          in: path
+          description: The name of the user's system (e.g. "barchart.com" or "grains.com")
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A JSON document, containing an array of alert objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Alert'
+
+        '500':
+          description: A JSON document, containing an error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /getHistory:
+    get:
+      summary: "Retrieve Alerts By Remote System Key"
+      description: Retrieves all alerts, for a single user, which have a specific "alert_system_key" property value.
+      security:
+        - JWT: []
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: "The unique identifier of the user (in the :alert_system)"
+          schema:
+            type: string
+
+        - name: alert_system
+          in: path
+          required: true
+          description: The name of the user's system (e.g. "barchart.com" or "grains.com")
+          schema:
+            type: string
+
+        - name: alert_system_key
+          in: path
+          required: true
+          description: "The key (specified by the remote system at creation) to match"
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: "A JSON document, containing an array of alert objects."
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Alert'
+        '500':
+          description: A JSON document, containing an error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+components:
+  securitySchemes:
+    JWT:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: The JWT authorization
+
+  schemas:
+
+
+    GetGrainBidsResponse:
+      type: object
+      properties:
+        status:
+          type: object
+          properties:
+            code:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: "Success."
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/GrainBidsByLocation'
+
+    GrainBidsByLocation:
+      type: object
+      properties:
+        bids:
+          type: array
+          items:
+            $ref: '#/components/schemas/GrainBid'
+        distance:
+          type: string
+          example: "13 miles away"
+        company:
+          type: string
+          example: "Heartland Coop"
+        locationId:
+          type: integer
+          example: 29443
+        location:
+          type: string
+          example: "Panora/Redfield"
+        facility_type:
+          type: string
+          example: "Country Elevator"
+        address:
+          type: string
+          example: "310 E. Clay"
+        city:
+          type: string
+          example: "Panora, Redfield"
+        state:
+          type: string
+          example: "IA"
+        lng:
+          type: integer
+          example: -94.3611938
+        lat:
+          type: integer
+          example: 41.6945319
+        phone:
+          type: string
+          example: "641-755-2114"
+        url:
+          type: string
+          example: "www.heartlandcoop.com"
+        zip:
+          type: string
+          example: "50216"
+        county:
+          type: string
+          example: "Guthrie County"
+        basisTimestamp:
+          type: string
+          example: "2020-10-14T12:01:56-05:00"
+        basisTimestampRaw:
+          type: integer
+          example: 1602694916
+
+    GrainBid:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "40204932"
+        commodity:
+          type: string
+          example: "Soybeans"
+        symbol:
+          type: string
+          example: "ZSX20"
+        delivery_start:
+          type: string
+          example: "2020-10-01 00:00:00"
+        delivery_end:
+          type: string
+          example: "2020-11-30 23:59:59"
+        basis:
+          type: string
+          example: "-62.00"
+        active:
+          type: boolean
+          example: true
+
+
+    getGrainInstrumentsResponse:
+      type: object
+      properties:
+        status:
+          type: object
+          properties:
+            code:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: "Success."
+          format: uuid
+          example: "39b633bf-8993-491d-b544-bdc9deed60be"
+        alert_state:
+          type: string
+          example: "Inactive"
+        alert_system:
+          type: string
+          example: "barchart.com"
+        alert_state_key:
+          type: string
+          nullable: true
+          example: "abcdef"
+        alert_type:
+          type: string
+          nullable: true
+          example: "price"
+        alert_behavior:
+          type: string
+          example: "Terminate"
+        user_id:
+          type: string
+          example: "barchart-test-user"
+        name:
+          type: string
+          example: "Buy TSLA"
+        user_notes:
+          type: string
+          nullable: true
+          example: "Time to buy Tesla Motors stock"
+        system_notes:
+          type: object
+          example: {}
+        automatic_reset:
+          type: boolean
+          example: true
+        create_date:
+          type: string
+          example: "1453673000873"
+        last_trigger_date:
+          type: string
+          nullable: true
+          example: "145367399999"
+        last_start_date:
+          type: string
+          nullable: true
+          example: "145367399999"
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition'
+        publishers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Publisher'
+        tracking_server_id:
+          type: integer # ???
+          nullable: true
+        schedules: # ???
+          type: array
+          items:
+            additionalProperties: {}
+            example: []
+        effectivePublishers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Publisher'
+
+    getQuoteResponse:
+      type: object
+      properties:
+        status:
+          type: object
+          properties:
+            code:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: "Success."
+          format: uuid
+          example: "39b633bf-8993-491d-b544-bdc9deed60be"
+        alert_state:
+          type: string
+          example: "Inactive"
+        alert_system:
+          type: string
+          example: "barchart.com"
+        alert_state_key:
+          type: string
+          nullable: true
+          example: "abcdef"
+        alert_type:
+          type: string
+          nullable: true
+          example: "price"
+        alert_behavior:
+          type: string
+          example: "Terminate"
+        user_id:
+          type: string
+          example: "barchart-test-user"
+        name:
+          type: string
+          example: "Buy TSLA"
+        user_notes:
+          type: string
+          nullable: true
+          example: "Time to buy Tesla Motors stock"
+        system_notes:
+          type: object
+          example: {}
+        automatic_reset:
+          type: boolean
+          example: true
+        create_date:
+          type: string
+          example: "1453673000873"
+        last_trigger_date:
+          type: string
+          nullable: true
+          example: "145367399999"
+        last_start_date:
+          type: string
+          nullable: true
+          example: "145367399999"
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition'
+        publishers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Publisher'
+        tracking_server_id:
+          type: integer # ???
+          nullable: true
+        schedules: # ???
+          type: array
+          items:
+            additionalProperties: {}
+            example: []
+        effectivePublishers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Publisher'
+
+    getHistoryResponse:
+      type: object
+      properties:
+        status:
+          type: object
+          properties:
+            code:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: "Success."
+          format: uuid
+          example: "39b633bf-8993-491d-b544-bdc9deed60be"
+        alert_state:
+          type: string
+          example: "Inactive"
+        alert_system:
+          type: string
+          example: "barchart.com"
+        alert_state_key:
+          type: string
+          nullable: true
+          example: "abcdef"
+        alert_type:
+          type: string
+          nullable: true
+          example: "price"
+        alert_behavior:
+          type: string
+          example: "Terminate"
+        user_id:
+          type: string
+          example: "barchart-test-user"
+        name:
+          type: string
+          example: "Buy TSLA"
+        user_notes:
+          type: string
+          nullable: true
+          example: "Time to buy Tesla Motors stock"
+        system_notes:
+          type: object
+          example: {}
+        automatic_reset:
+          type: boolean
+          example: true
+        create_date:
+          type: string
+          example: "1453673000873"
+        last_trigger_date:
+          type: string
+          nullable: true
+          example: "145367399999"
+        last_start_date:
+          type: string
+          nullable: true
+          example: "145367399999"
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition'
+        publishers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Publisher'
+        tracking_server_id:
+          type: integer # ???
+          nullable: true
+        schedules: # ???
+          type: array
+          items:
+            additionalProperties: {}
+            example: []
+        effectivePublishers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Publisher'
+
+
+    Alert:
+      type: object
+      properties:
+        alert_id:
+          type: string
+          format: uuid
+          example: "39b633bf-8993-491d-b544-bdc9deed60be"
+        alert_state:
+          type: string
+          example: "Inactive"
+        alert_system:
+          type: string
+          example: "barchart.com"
+        alert_state_key:
+          type: string
+          nullable: true
+          example: "abcdef"
+        alert_type:
+          type: string
+          nullable: true
+          example: "price"
+        alert_behavior:
+          type: string
+          example: "Terminate"
+        user_id:
+          type: string
+          example: "barchart-test-user"
+        name:
+          type: string
+          example: "Buy TSLA"
+        user_notes:
+          type: string
+          nullable: true
+          example: "Time to buy Tesla Motors stock"
+        system_notes:
+          type: object
+          example: {}
+        automatic_reset:
+          type: boolean
+          example: true
+        create_date:
+          type: string
+          example: "1453673000873"
+        last_trigger_date:
+          type: string
+          nullable: true
+          example: "145367399999"
+        last_start_date:
+          type: string
+          nullable: true
+          example: "145367399999"
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition'
+        publishers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Publisher'
+        tracking_server_id:
+          type: integer # ???
+          nullable: true
+        schedules: # ???
+          type: array
+          items:
+            additionalProperties: {}
+            example: []
+        effectivePublishers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Publisher'
+
+    Publisher:
+      type: object
+      description: A "publisher" defines the rules for notification once an alert has been triggered. An alert can have multiple publishers.
+      properties:
+        publisher_id:
+          type: string
+          format: uuid
+          example: "9c864a19-ce77-4a87-8cd6-e0810ecb120e"
+        use_default_recipient:
+          type: boolean
+          example: false
+        recipient:
+          type: string
+          example: "123-456-7890"
+        format:
+          type: string
+          example: "It is a good time to buy Telsa stock."
+        timing:
+          type: object
+          properties:
+            timezon:
+              type: string
+              example: "America/Chicago"
+        type:
+          type: object
+          properties:
+            publisher_type_id:
+              type: integer
+              example: 1
+            transport:
+              type: string
+              example: "sms"
+            provider:
+              type: string
+              example: "twilio"
+
+    Operator:
+      type: object
+      properties:
+        operator_id:
+          type: integer
+          example: 4
+        operator_type:
+          type: string
+          example: binary
+        operator_name:
+          type: string
+          example: is-indicator
+        operand_options:
+          type: array
+          items:
+            type: string
+            example: ["Buy", "Sell", "Hold"]
+        operand_literal:
+          type: boolean
+          example: true
+        operand_display:
+          type: string
+          example: "10"
+        operand:
+          type: string
+          example: "10"
+        display:
+          type: object
+          properties:
+            short:
+              type: string
+              example: ">"
+            medium:
+              type: string
+              example: "greater than"
+            long:
+              type: string
+              example: "greater than"
+        modifiers:
+          type: array
+          items:
+            type: integer
+          example: [1,2,3]
+
+    Condition:
+      type: object
+      properties:
+        condition_id:
+          type: string
+          format: uuid
+          example: "38a3f731-0f87-40b7-a33b-dd9c792998e2"
+        name:
+          type: string
+          example: "Gap Down is greater than 10.00"
+        operator:
+          $ref: '#/components/schemas/Operator'
+        property:
+          $ref: '#/components/schemas/Property'
+        templates:
+          type: object
+          properties:
+            condition:
+              type: string
+              example: "Gap Down is greater than {{{operator.format.operand}}}"
+            trigger:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: "Gap Down is {{{event.format.gapDown}}}"
+                sms:
+                  type: string
+                  example: "Gap Down for {{{property.target.identifier}}} is {{{event.format.gapDown}}}"
+
+    Property:
+      description: A "property" refers to an attribute of a target. The value of a "property" can be checked using an "operator" object.
+      type: object
+      properties:
+        property_id:
+          type: integer
+          example: 18
+        type:
+          type: string
+          example: number
+        format:
+          type: string
+          example: "0,0.00"
+        group:
+          type: string
+          example: "Technical"
+        accessor:
+          type: array
+          items:
+            type: string
+            example: "gapDown"
+        category:
+          type: array
+          items:
+            type: string
+            example: "Gap & Range Change"
+        description:
+          type: array
+          items:
+            type: string
+            example: "Gap Down"
+        descriptionShort:
+          type: array
+          items:
+            type: string
+            example: "Gap Down"
+        target:
+          $ref: '#/components/schemas/Target'
+        valid_operators:
+          type: array
+          items:
+            type: integer
+            example: 44
+        sortOrder:
+          type: integer
+          example: 912
+
+    Target:
+      type: object
+      description: A "target" refers to a type of object which can be observed. Each target has one or more properties.
+      required:
+        - type
+        - description
+        - target_id
+        - identifier_description
+      properties:
+        description:
+          type: string
+          example: "basic"
+        display:
+          type: string # ???
+          nullable: true
+        identifier:
+          type: string
+          example: "TSLA"
+        identifier_description:
+          type: string
+          example: "symbol"
+        qualifier_descriptions:
+          type: array
+          items:
+            type: string
+            example: ["location", "delivery date"]
+        kind:
+          type: string # ???
+          nullable: true
+        target_id:
+          type: integer
+          example: 1
+        type:
+          type: string
+          example: "symbol"
+
+  responses:
+    Success:
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Success."
+              code:
+                type: integer
+                example: 200
+
+    Unauthorized:
+      description: The unauthorized access.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "API key is missing or not valid."
+
+    BadRequest:
+      description: The request was invalid, please see the message for more information.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "No active bids available for the requested location(s) at this time."
+              code:
+                type: integer
+                example: 204
+
+    ServerError:
+      description: Something is not working correctly, please contact support.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Something is not working correctly, please contact support."
+              code:
+                type: integer
+                example: 500
