@@ -36,12 +36,6 @@
 * [getGrainInstrumentsResponse](/content/api/components?id=schemasgetGrainInstrumentsResponse)
 * [getQuoteResponse](/content/api/components?id=schemasgetQuoteResponse)
 * [getHistoryResponse](/content/api/components?id=schemasgetHistoryResponse)
-* [Alert](/content/api/components?id=schemasAlert)
-* [Publisher](/content/api/components?id=schemasPublisher)
-* [Operator](/content/api/components?id=schemasOperator)
-* [Condition](/content/api/components?id=schemasCondition)
-* [Property](/content/api/components?id=schemasProperty)
-* [Target](/content/api/components?id=schemasTarget)
 
 ### Security 
 

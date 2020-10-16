@@ -1,17 +1,18 @@
 # Release Notes
 
 ## 1.0.0
-**The first, formal release**
 
-New
+**New**
 
-* Blablabla
-* Blablabla
+* Soft Launched North America Grain Price Documentation Site
 
-Improved
-* Blablabla
-* Blablabla
+**Improved**
+* None
 
-API Changelog
-* Blablabla
-* Blablabla
+**Bug fixes**
+* None
+
+**API Changelog**
+* None
+
+

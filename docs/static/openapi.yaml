@@ -223,7 +223,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Alert'
+                $ref: '#/components/schemas/GetGrainBidsResponse'
 
         '404':
           description: "The alert does not exist."
@@ -264,7 +264,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Alert'
+                  $ref: '#/components/schemas/GetGrainBidsResponse'
 
         '500':
           description: A JSON document, containing an error.
@@ -312,7 +312,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Alert'
+                  $ref: '#/components/schemas/GetGrainBidsResponse'
         '500':
           description: A JSON document, containing an error.
           content:
@@ -337,17 +337,9 @@ components:
     GetGrainBidsResponse:
       type: object
       properties:
-        status:
-          type: object
-          properties:
-            code:
-              type: integer
-              example: 200
-            message:
-              type: string
-              example: "Success."
         results:
           type: array
+          description: A list of groups of grain bids that are grouped by locations.
           items:
             $ref: '#/components/schemas/GrainBidsByLocation'
 
@@ -356,55 +348,76 @@ components:
       properties:
         bids:
           type: array
+          description: A list of cash bids from a grain buying location. Each cash bid contains the meta and price data applicable to that location.
           items:
             $ref: '#/components/schemas/GrainBid'
         distance:
           type: string
+          description: Distance of the grain buying location in miles from the input zip code or lat/lng.
+          nullable: true
           example: "13 miles away"
         company:
+          description: Name of the applicable grain buying elevator.
           type: string
           example: "Heartland Coop"
         locationId:
+          description: A internal unique identifier of grain buying location.
           type: integer
           example: 29443
         location:
           type: string
+          description: Name of grain buying location that grain bid originated from.
           example: "Panora/Redfield"
         facility_type:
           type: string
+          description: The type of facility.
           example: "Country Elevator"
         address:
           type: string
+          description: The street address of the location.
           example: "310 E. Clay"
         city:
           type: string
+          description: City associated with the underlying grain bid.
           example: "Panora, Redfield"
         state:
           type: string
+          description: 2-char abbreviation of the state that contains the applicable cash bid.
           example: "IA"
         lng:
           type: integer
+          description: The longitude of the grain buying location.
           example: -94.3611938
         lat:
           type: integer
+          description: The latitude of the grain buying location.
           example: 41.6945319
         phone:
           type: string
+          description: The phone number for the grain buying location.
+          nullable: true
           example: "641-755-2114"
         url:
           type: string
+          description: The public website of the grain buying elevator.
+          nullable: true
           example: "www.heartlandcoop.com"
         zip:
           type: string
+          description: The zip code for the location.
           example: "50216"
         county:
           type: string
+          description: The name of the county containing the applicable cash bid.
+          nullable: true
           example: "Guthrie County"
         basisTimestamp:
           type: string
+          description: Datetime in central timezone when basis was last updated for the given elevator.
           example: "2020-10-14T12:01:56-05:00"
         basisTimestampRaw:
           type: integer
+          description: Unix timestamp when basis was last updated for the given elevator.
           example: 1602694916
 
     GrainBid:
@@ -412,25 +425,45 @@ components:
       properties:
         id:
           type: string
+          description: the internal auto-increment numeric id for the cash bid.
           example: "40204932"
         commodity:
           type: string
+          description: The commodity name displayed in grain buyers' end.
           example: "Soybeans"
         symbol:
           type: string
+          description: Futures contract symbol of  cash bid's associated futures contract. If no symbol, return "".
+          nullable: true
           example: "ZSX20"
         delivery_start:
           type: string
+          description: Delivery start date of cash bid.
           example: "2020-10-01 00:00:00"
         delivery_end:
           type: string
+          description: Delivery end date of cash bid.
           example: "2020-11-30 23:59:59"
         basis:
           type: string
+          description: The difference between the cash price grain buyer desire to pay for grain and the futures price of associated futures contract in cents per bushel.
           example: "-62.00"
         active:
           type: boolean
+          description: The status of the cash bid.
           example: true
+        notes:
+          type: string
+          description: Notes for cash bid from grain buyer. If not set, return null.
+          example: "Discount Schedule"
+        currency:
+          type: string
+          description: The currency of cash price.
+          example: "USD"
+        cashprice:
+          type: number
+          description: Cash price grain buyer desire to pay for grain in dollar per bushel.
+          example: "10.00"
 
 
     getGrainInstrumentsResponse:
@@ -494,11 +527,11 @@ components:
         conditions:
           type: array
           items:
-            $ref: '#/components/schemas/Condition'
+            $ref: '#/components/schemas/GetGrainBidsResponse'
         publishers:
           type: array
           items:
-            $ref: '#/components/schemas/Publisher'
+            $ref: '#/components/schemas/GetGrainBidsResponse'
         tracking_server_id:
           type: integer # ???
           nullable: true
@@ -510,7 +543,7 @@ components:
         effectivePublishers:
           type: array
           items:
-            $ref: '#/components/schemas/Publisher'
+            $ref: '#/components/schemas/GetGrainBidsResponse'
 
     getQuoteResponse:
       type: object
@@ -573,11 +606,11 @@ components:
         conditions:
           type: array
           items:
-            $ref: '#/components/schemas/Condition'
+            $ref: '#/components/schemas/GetGrainBidsResponse'
         publishers:
           type: array
           items:
-            $ref: '#/components/schemas/Publisher'
+            $ref: '#/components/schemas/GetGrainBidsResponse'
         tracking_server_id:
           type: integer # ???
           nullable: true
@@ -589,7 +622,7 @@ components:
         effectivePublishers:
           type: array
           items:
-            $ref: '#/components/schemas/Publisher'
+            $ref: '#/components/schemas/GetGrainBidsResponse'
 
     getHistoryResponse:
       type: object
@@ -652,11 +685,11 @@ components:
         conditions:
           type: array
           items:
-            $ref: '#/components/schemas/Condition'
+            $ref: '#/components/schemas/GetGrainBidsResponse'
         publishers:
           type: array
           items:
-            $ref: '#/components/schemas/Publisher'
+            $ref: '#/components/schemas/GetGrainBidsResponse'
         tracking_server_id:
           type: integer # ???
           nullable: true
@@ -668,273 +701,8 @@ components:
         effectivePublishers:
           type: array
           items:
-            $ref: '#/components/schemas/Publisher'
+            $ref: '#/components/schemas/GetGrainBidsResponse'
 
-
-    Alert:
-      type: object
-      properties:
-        alert_id:
-          type: string
-          format: uuid
-          example: "39b633bf-8993-491d-b544-bdc9deed60be"
-        alert_state:
-          type: string
-          example: "Inactive"
-        alert_system:
-          type: string
-          example: "barchart.com"
-        alert_state_key:
-          type: string
-          nullable: true
-          example: "abcdef"
-        alert_type:
-          type: string
-          nullable: true
-          example: "price"
-        alert_behavior:
-          type: string
-          example: "Terminate"
-        user_id:
-          type: string
-          example: "barchart-test-user"
-        name:
-          type: string
-          example: "Buy TSLA"
-        user_notes:
-          type: string
-          nullable: true
-          example: "Time to buy Tesla Motors stock"
-        system_notes:
-          type: object
-          example: {}
-        automatic_reset:
-          type: boolean
-          example: true
-        create_date:
-          type: string
-          example: "1453673000873"
-        last_trigger_date:
-          type: string
-          nullable: true
-          example: "145367399999"
-        last_start_date:
-          type: string
-          nullable: true
-          example: "145367399999"
-        conditions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Condition'
-        publishers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Publisher'
-        tracking_server_id:
-          type: integer # ???
-          nullable: true
-        schedules: # ???
-          type: array
-          items:
-            additionalProperties: {}
-            example: []
-        effectivePublishers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Publisher'
-
-    Publisher:
-      type: object
-      description: A "publisher" defines the rules for notification once an alert has been triggered. An alert can have multiple publishers.
-      properties:
-        publisher_id:
-          type: string
-          format: uuid
-          example: "9c864a19-ce77-4a87-8cd6-e0810ecb120e"
-        use_default_recipient:
-          type: boolean
-          example: false
-        recipient:
-          type: string
-          example: "123-456-7890"
-        format:
-          type: string
-          example: "It is a good time to buy Telsa stock."
-        timing:
-          type: object
-          properties:
-            timezon:
-              type: string
-              example: "America/Chicago"
-        type:
-          type: object
-          properties:
-            publisher_type_id:
-              type: integer
-              example: 1
-            transport:
-              type: string
-              example: "sms"
-            provider:
-              type: string
-              example: "twilio"
-
-    Operator:
-      type: object
-      properties:
-        operator_id:
-          type: integer
-          example: 4
-        operator_type:
-          type: string
-          example: binary
-        operator_name:
-          type: string
-          example: is-indicator
-        operand_options:
-          type: array
-          items:
-            type: string
-            example: ["Buy", "Sell", "Hold"]
-        operand_literal:
-          type: boolean
-          example: true
-        operand_display:
-          type: string
-          example: "10"
-        operand:
-          type: string
-          example: "10"
-        display:
-          type: object
-          properties:
-            short:
-              type: string
-              example: ">"
-            medium:
-              type: string
-              example: "greater than"
-            long:
-              type: string
-              example: "greater than"
-        modifiers:
-          type: array
-          items:
-            type: integer
-          example: [1,2,3]
-
-    Condition:
-      type: object
-      properties:
-        condition_id:
-          type: string
-          format: uuid
-          example: "38a3f731-0f87-40b7-a33b-dd9c792998e2"
-        name:
-          type: string
-          example: "Gap Down is greater than 10.00"
-        operator:
-          $ref: '#/components/schemas/Operator'
-        property:
-          $ref: '#/components/schemas/Property'
-        templates:
-          type: object
-          properties:
-            condition:
-              type: string
-              example: "Gap Down is greater than {{{operator.format.operand}}}"
-            trigger:
-              type: object
-              properties:
-                email:
-                  type: string
-                  example: "Gap Down is {{{event.format.gapDown}}}"
-                sms:
-                  type: string
-                  example: "Gap Down for {{{property.target.identifier}}} is {{{event.format.gapDown}}}"
-
-    Property:
-      description: A "property" refers to an attribute of a target. The value of a "property" can be checked using an "operator" object.
-      type: object
-      properties:
-        property_id:
-          type: integer
-          example: 18
-        type:
-          type: string
-          example: number
-        format:
-          type: string
-          example: "0,0.00"
-        group:
-          type: string
-          example: "Technical"
-        accessor:
-          type: array
-          items:
-            type: string
-            example: "gapDown"
-        category:
-          type: array
-          items:
-            type: string
-            example: "Gap & Range Change"
-        description:
-          type: array
-          items:
-            type: string
-            example: "Gap Down"
-        descriptionShort:
-          type: array
-          items:
-            type: string
-            example: "Gap Down"
-        target:
-          $ref: '#/components/schemas/Target'
-        valid_operators:
-          type: array
-          items:
-            type: integer
-            example: 44
-        sortOrder:
-          type: integer
-          example: 912
-
-    Target:
-      type: object
-      description: A "target" refers to a type of object which can be observed. Each target has one or more properties.
-      required:
-        - type
-        - description
-        - target_id
-        - identifier_description
-      properties:
-        description:
-          type: string
-          example: "basic"
-        display:
-          type: string # ???
-          nullable: true
-        identifier:
-          type: string
-          example: "TSLA"
-        identifier_description:
-          type: string
-          example: "symbol"
-        qualifier_descriptions:
-          type: array
-          items:
-            type: string
-            example: ["location", "delivery date"]
-        kind:
-          type: string # ???
-          nullable: true
-        target_id:
-          type: integer
-          example: 1
-        type:
-          type: string
-          example: "symbol"
 
   responses:
     Success:

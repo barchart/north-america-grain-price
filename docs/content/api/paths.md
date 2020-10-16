@@ -76,7 +76,7 @@
 
 **Content Type**: <code>application/json</code>
 
-**Response Type:** [<code>Array&lt;Alert&gt;</code>](/content/api/components?id=schemasAlert)
+**Response Type:** [<code>Array&lt;GetGrainBidsResponse&gt;</code>](/content/api/components?id=schemasGetGrainBidsResponse)
 
 * * *
 
@@ -125,7 +125,7 @@
 
 **Content Type**: <code>application/json</code>
 
-**Response Type:** [<code>Array&lt;Alert&gt;</code>](/content/api/components?id=schemasAlert)
+**Response Type:** [<code>Array&lt;GetGrainBidsResponse&gt;</code>](/content/api/components?id=schemasGetGrainBidsResponse)
 
 * * *
 
@@ -175,7 +175,7 @@
 
 **Content Type**: <code>application/json</code>
 
-**Response Type:** [<code>Array&lt;Alert&gt;</code>](/content/api/components?id=schemasAlert)
+**Response Type:** [<code>Array&lt;GetGrainBidsResponse&gt;</code>](/content/api/components?id=schemasGetGrainBidsResponse)
 
 * * *
 
