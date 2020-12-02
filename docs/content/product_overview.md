@@ -25,5 +25,6 @@ Please submit a ticket at our support desk - https://help.barchart.com/support/t
 * [Trials are available](https://www.barchart.com/cmdty/contact)
 * Data is for internal use only, and redistribution is expressly forbidden
 * Contact Barchart directly at cashdata@barchart.com for more information.
+* Hi THis is the test
 
 
