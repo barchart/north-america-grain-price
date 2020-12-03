@@ -22,12 +22,12 @@ Data around the grain buying facilities is managed independently. We also track 
 
 ## Support and Feature Request
 
-Something not right? Need assistance? Don’t hesitate to submit a ticket to our support desk at https://help.barchart.com/support/tickets/new . We’ll get the issue sorted out ASAP. 
+Something not right? Need assistance? Don’t hesitate to submit a ticket to our support desk at https://help.barchart.com/support/tickets/new. We’ll get the issue sorted out ASAP. 
 
 
 ## Terms
 
-* Interested in a trial? [Let us know] (https://www.barchart.com/cmdty/contact) and we’ll get you started. 
+* Interested in a trial? [Let us know](https://www.barchart.com/cmdty/contact) and we’ll get you started. 
 * Just a heads up, data is for internal use only. Redistribution is expressly prohibited. 
 * For more information, contact Barchart directly at cashdata@barchart.com. We’d be happy to answer any questions you may have. 
 
