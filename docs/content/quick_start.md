@@ -1,14 +1,14 @@
 ## 01 Get an API key
 
-GO to [cmdty website](https://www.barchart.com/cmdty/data/grain-prices) and fill out the `Get Started` form.
-Barchart team will set-up an API Key for you.
+Head over to the [cmdty website](https://www.barchart.com/cmdty/data/grain-prices) and fill out the 'Get Started' form. The Barchart team will quickly set you up your very own API key. 
+
 
 ## 02 Make your first query
 
-Let's retrieve all grain bids from all elevators in your zip code area:
-* Open any browser you have
-* Put your API key and Zip Code into the url template -  http://ondemand.websol.barchart.com/getGrainBids.json?apikey={YOUR_API_KEY}&getAllBids=1&zipCode={YOUR_ZIP_CODE} -, then copy it
-* Past the url into the browser, and hit enter
+As an example, let's retrieve all grain bids from all elevators in your zip code area:
+* Open your favorite web browser
+* Enter your API key and zip code into the url template:  http://ondemand.websol.barchart.com/getGrainBids.json?apikey={YOUR_API_KEY}&getAllBids=1&zipCode={YOUR_ZIP_CODE} 
+* Copy and paste the url into the browser, and hit enter
 * Voila! Should qualified grain bids return to your browser, similar to below:
 ```
 "status": {
@@ -60,4 +60,4 @@ Let's retrieve all grain bids from all elevators in your zip code area:
 
 ## 03 Explore more
 
-Congrats! You've made your first query. Now, you can check detailed API documentation at API Reference Section, and explore more advanced methods to query grain prices data in API Examples Section
+Congrats! You've made your first query. Feel free to check detailed API documentation in our API Reference Section, where you can also explore more advanced methods of querying grain prices data in the API Examples Section.
