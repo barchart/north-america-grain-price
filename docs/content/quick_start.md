@@ -9,7 +9,7 @@ As an example, let's retrieve all grain bids from all elevators in your zip code
 * Open your favorite web browser
 * Enter your API key and zip code into the url template:  http://ondemand.websol.barchart.com/getGrainBids.json?apikey={YOUR_API_KEY}&getAllBids=1&zipCode={YOUR_ZIP_CODE} 
 * Copy and paste the url into the browser, and hit enter
-* Voila! Should qualified grain bids return to your browser, similar to below:
+* Voila! The API will returned qualified grain bids to your browser, similar to below:
 ```
 "status": {
     "code": 200,
