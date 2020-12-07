@@ -1,6 +1,6 @@
 ## 01 Get an API key
 
-Head over to the [cmdty website](https://www.barchart.com/cmdty/data/grain-prices) and fill out the 'Get Started' form. The Barchart team will quickly set you up your very own API key. 
+Head over to the [cmdty website](https://www.barchart.com/cmdty/data/grain-prices) and fill out the 'Get Started' form. The Barchart team will quickly set up your very own API key. 
 
 
 ## 02 Make your first query
