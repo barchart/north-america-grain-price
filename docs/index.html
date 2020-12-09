@@ -15,8 +15,9 @@
     window.$docsify = {
         name: 'cmdty North America Grain Prices',
         repo: 'git+https://github.com/barchart/cmdty-doc-grain-price',
+		logo: '/static/cmdty-logo.png',
         loadSidebar: true,
-        coverpage: true,
+        coverpage: false,
         relativePath: false,
         onlyCover: true,
         notFoundPage: true,
@@ -25,7 +26,10 @@
         noCompileLinks: [
         	'/static/*.*',
             '/*static/*.*'
-        ]
+        ],
+		alias: {
+			'/': '/content/product_overview'
+		}
     }
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>

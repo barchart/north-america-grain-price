@@ -1,6 +1,9 @@
 .sidebar .app-name {
-    text-align: left;
-    margin-left: 15px;
+    text-align: center;
+}
+
+.sidebar .app-name img {
+    width: 35%;
 }
 
 .sidebar ul li {
