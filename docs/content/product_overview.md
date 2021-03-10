@@ -1,6 +1,12 @@
-## Short Description
+# Overview
 
-The North America Grain Prices dataset features grain bids data from over 4,000 grain buying facilities across North America. Each grain bid incorporates two key types of data:  the first is price data, which covers basis and cash price created on price events with deep history available. Grain bids also include rich metadata, covering geo-location, facility type, fips codes, and more.
+## Description
+
+Our North American Grain Price dataset represents the benchmark offering for inland grain prices throughout North America.  On average we provide users of this dataset with live grain bids from over 4,000 grain buying facilities across North America. 
+
+Each "grain bid" relates to two key types of data:  
+* Price Data - This covers basis and the corresponding cash price.  Records are created pricing events such as a grain facility updating their basis or flat price.  Historical data is available starting in 2008. 
+* Metadata - This relates to information that describes either the facility or the bids are related to a given facility.  Typically this will cover geo-location, facility type, fips codes (area definitions), and commodity descriptions.
 
 
 ## What's Included?
