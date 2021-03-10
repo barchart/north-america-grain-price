@@ -1,18 +1,20 @@
 # Release Notes
 
-## 1.0.0
+## 2.0.2
+
+**New Feature**
+
+* Added Search Bar
+
+
+**Other**
+
+* Removed Cover Page
+
+## 2.0.1
 
 **New**
 
-* Soft Launched North America Grain Price Documentation Site
-
-**Improved**
-* None
-
-**Bug fixes**
-* None
-
-**API Changelog**
-* None
+* Launched North America Grain Price Documentation Site
 
 

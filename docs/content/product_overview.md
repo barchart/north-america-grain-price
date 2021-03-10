@@ -12,7 +12,7 @@ The North America Grain Prices dataset features grain bids data from over 4,000 
 
 ## Roadmap
 
-By the end of 2020, we’ll have increased our location coverage from 4,000 to 4,200. Just another reason to be looking forward to closing out this year!
+By the end of 2021, we’ll have increased our location coverage from 4,000 to 4,200. Just another reason to be looking forward to closing out this year!
 
 Data around the grain buying facilities is managed independently. We also track the facility history, including what company owns the facility and how long the company has had ownership. 
 

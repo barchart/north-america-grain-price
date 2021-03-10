@@ -38,7 +38,7 @@ Our cash bid historical data dates back to 2008.
 
 #### What is the current coverage, and roadmap?
 
-We currently cover 4,000 locations across North America. By the end of 2020, we will increase our coverage to 4,200 locations.
+We currently cover 4,000 locations across North America. By the end of 2021, we will increase our coverage to 4,200 locations.
 
 #### Should every basis value have a corresponding cash value?
 
