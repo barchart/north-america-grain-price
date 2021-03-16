@@ -65,6 +65,6 @@ As an example, let's retrieve all grain bids from all elevators in your zip code
     }]
 ```
 
-## Explore more
+## Explore More
 
 Congrats! You've made your first query. Feel free to check more detailed documentation in our API Reference Section.  Here you can explore more advanced methods of querying grain prices data.
