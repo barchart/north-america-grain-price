@@ -2,8 +2,6 @@
 * [Quick Start Guide](/content/quick_start)
 * [API Reference](/content/api_reference)
 * [How To](/content/how_to)
-	* [Grain Bids Quote](/content/concepts/grain_bids_quote)
-	* [Grain Bids History](/content/concepts/grain_bids_history)
 * [FAQs](/content/faq)
 * [Release Notes](/content/release_notes)
 
