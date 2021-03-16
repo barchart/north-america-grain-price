@@ -76,7 +76,7 @@ You can pull all supported commodity names by using getGrainBids API with input 
 
 http://ondemand.websol.barchart.com/getGrainBids.json?apikey=[YOUR_API_KEY]&requestType=commodities
 
-## Get Prices For a Apecified Area
+## Get Prices For a Specified Area
 An area can be defined by geographic coordinates and radius, by zip code and radius, by county fips code, and by county name.
 
 Get all bids for an area defined by lat&lng and maxDistance:
