@@ -2,7 +2,7 @@
 
 ## OpenAPI Definition
 
-[Download](static/openapi.yaml)
+* [Download OpenAPI Definition](static/openapi.yaml)
 
 ## Contents 
 
