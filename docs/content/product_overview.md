@@ -19,9 +19,11 @@ Each "grain bid" relates to two key types of data:
 ## Product Roadmap
 Here are some features that we're working on.  If you would like to submit a feature request, please reach out to cmdty@barchart.com.
 
-Coverage - We are currently in the process of broadening our coverage even further with the stated goal of 4,150 locations on average per day throuhgout 2021.
+**Coverage** - We are currently in the process of broadening our coverage even further with the stated goal of 4,150 locations on average per day throuhgout 2021.
 
-Location Continuity - Data around grain buying facilities is managed independently and includes information such as  what company owns the facility and how long the company has had ownership. As currently implemented, (example) if a grain buying facility (with a location ID of ‘A’) was sold to a new company, the original location ID A would be marked as inactive. A new location ID (‘B’) would be created to represent the facility after the transfer of ownership to the new company. Cash bids would be stored under the new location ID B.  In 2021 we will continue location ID A with status of Active even after the transfer of ownership.  As a result, cash bids will continue to be stored under location ID A, and users can use facility meta data to track changes in ownership.
+**Location Continuity** - Data around grain buying facilities is managed independently and includes information such as  what company owns the facility and how long the company has had ownership. As currently implemented, (example) if a grain buying facility (with a location ID of ‘A’) was sold to a new company, the original location ID A would be marked as inactive and A new location ID (‘B’) would be created.  Cash bids would be stored under the new location ID B.  
+
+In 2021 we will continue location ID A with status of Active even after the transfer of ownership.  As a result, cash bids will continue to be stored under location ID A, and users can use facility meta data to track changes in ownership.
 
 
 ## Support and Feature Requests
