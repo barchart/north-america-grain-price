@@ -1,9 +1,16 @@
-## 01 Get an API key
+# Quick Start Guide
 
-Head over to the [cmdty website](https://www.barchart.com/cmdty/data/grain-prices) and fill out the 'Get Started' form. The Barchart team will quickly set up your very own API key. 
+## Get an API key
 
+If you'd like to use our service, please [visit our website](https://www.barchart.com/cmdty/data/grain-prices) and fill out the 'Get Started' form.  You can also send us an email at cmdty@barchart.com.  It's worth nothing that the more information you can provide us in the request will allow us to deliver a solution which best fits your needs.  Some information that would be helpful would include:
+* Use Case - What are you looking to do with the information?
+* Data Access - Is your application public or only available to subscribers?  Can users download the data?
+* Historical Data - Do you require historical information or only current prices?
+* Access Type - Do you want to see data for a zip code or for a collection of bids that you specify?
 
-## 02 Make your first query
+Once we have an understanding of what you're looking to do our team will be able to get you started.
+
+## Making Your First Query
 
 As an example, let's retrieve all grain bids from all elevators in your zip code area:
 * Open your favorite web browser
@@ -58,6 +65,6 @@ As an example, let's retrieve all grain bids from all elevators in your zip code
     }]
 ```
 
-## 03 Explore more
+## Explore more
 
-Congrats! You've made your first query. Feel free to check detailed API documentation in our API Reference Section, where you can also explore more advanced methods of querying grain prices data in the API Examples Section.
+Congrats! You've made your first query. Feel free to check more detailed documentation in our API Reference Section.  Here you can explore more advanced methods of querying grain prices data.
