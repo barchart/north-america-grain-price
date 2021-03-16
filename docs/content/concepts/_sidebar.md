@@ -1,5 +1,5 @@
 * [Overview](/content/product_overview)
-* [Quick Start](/content/quick_start)
+* [Quick Start Guide](/content/quick_start)
 * [API Reference](/content/api_reference)
 * API Examples
 	* [Grain Bids Quote](/content/concepts/grain_bids_quote)
