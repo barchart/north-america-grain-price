@@ -1,34 +1,30 @@
 # API Reference
 
-## cmdty North America Grain Price API 1.0.0 {docsify-ignore}
-    
-> Access best-in-class intraday and historical cash grain prices for North America using Barchart&#x27;s REST-ful web service
-
-## OpenAPI Definition {docsify-ignore}
+## OpenAPI Definition
 
 [Download](static/openapi.yaml)
 
-## Contents {docsify-ignore}
+## Contents 
 
 * [Servers](#Servers)
 * [Components](#Components)
 * [Paths](#Paths)
 
 
-## Servers {docsify-ignore}
+## Servers
 
 * [http://ondemand.websol.barchart.com/](http://ondemand.websol.barchart.com/)  - Production
 
-## Components {docsify-ignore}
+## Components 
 
-### Responses 
+### Responses {docsify-ignore} 
 
 * [Success](/content/api/components?id=responsesSuccess)
 * [Unauthorized](/content/api/components?id=responsesUnauthorized)
 * [BadRequest](/content/api/components?id=responsesBadRequest)
 * [ServerError](/content/api/components?id=responsesServerError)
 
-### Schemas 
+### Schemas {docsify-ignore}
 
 * [GetGrainBidsResponse](/content/api/components?id=schemasGetGrainBidsResponse)
 * [GrainBidsByLocation](/content/api/components?id=schemasGrainBidsByLocation)
@@ -37,11 +33,11 @@
 * [getQuoteResponse](/content/api/components?id=schemasgetQuoteResponse)
 * [getHistoryResponse](/content/api/components?id=schemasgetHistoryResponse)
 
-### Security 
+### Security {docsify-ignore}
 
 * [JWT](/content/api/components?id=securityJWT)
 
-## Paths {docsify-ignore}
+## Paths
 
 * [GET /getGrainBids](/content/api/paths?id=get-getGrainBids)
 * [GET /getGrainInstruments](/content/api/paths?id=get-getGrainInstruments)
