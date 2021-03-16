@@ -16,25 +16,25 @@ Each "grain bid" relates to two key types of data:
 | North America Grain Prices|Barchart| Grain Bids from 4,000+ North America Elevators  |Realtime| 2008-10-02  | 2018-05-14  | csv, json, xml |
 
 
-## Roadmap
+## Product Roadmap
+Here are some features that we're working on.  If you would like to submit a feature request, please reach out to cmdty@barchart.com.
 
-By the end of 2021, we’ll have increased our location coverage from 4,000 to 4,200. Just another reason to be looking forward to closing out this year!
+Coverage - We are currently in the process of broadening our coverage even further with the stated goal of 4,150 locations on average per day throuhgout 2021.
 
-Data around the grain buying facilities is managed independently. We also track the facility history, including what company owns the facility and how long the company has had ownership. 
-
-* Example: If a grain buying facility (with a location ID of ‘A’) was sold to a new company, the original location ID A would be marked as inactive. A new location ID (‘B’) would be created to represent the facility after the transfer of ownership to the new company. Cash bids would be stored under the new location ID B.
-* Once new logic is implemented on our end of things, we will instead continue to use the first location ID A for the facility after the transfer of ownership. Cash bids will continue to be stored under location ID A. 
+Location Continuity - Data around grain buying facilities is managed independently and includes information such as  what company owns the facility and how long the company has had ownership. As currently implemented, (example) if a grain buying facility (with a location ID of ‘A’) was sold to a new company, the original location ID A would be marked as inactive. A new location ID (‘B’) would be created to represent the facility after the transfer of ownership to the new company. Cash bids would be stored under the new location ID B.  In 2021 we will continue location ID A with status of Active even after the transfer of ownership.  As a result, cash bids will continue to be stored under location ID A, and users can use facility meta data to track changes in ownership.
 
 
-## Support and Feature Request
+## Support and Feature Requests
 
-Something not right? Need assistance? Don’t hesitate to submit a ticket to our support desk at https://help.barchart.com/support/tickets/new. We’ll get the issue sorted out ASAP. 
+For level one support, please email mds@barchart.com and a ticket will be automatically generated to track your request.
+
+Feature requests can be submitted to cmdty@barchart.com.  If you are a grain facility and your location is not covered by our service, please reach out to let us know.  We can provide you with several options for getting your bids into our service.
 
 
-## Terms
+## Getting Started
 
 * Interested in a trial? [Let us know](https://www.barchart.com/cmdty/contact) and we’ll get you started. 
 * Just a heads up, data is for internal use only. Redistribution is expressly prohibited. 
-* For more information, contact Barchart directly at cashdata@barchart.com. We’d be happy to answer any questions you may have. 
+* For more information, contact us directly at cmdty@barchart.com. We’d be happy to answer any questions you may have. 
 
 
