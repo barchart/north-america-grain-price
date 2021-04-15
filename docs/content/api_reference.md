@@ -1,8 +1,5 @@
 # API Reference
 
-## OpenAPI Definition
-
-* [Download OpenAPI Definition](static/openapi.yaml)
 
 ## Contents 
 
@@ -33,9 +30,6 @@
 * [getQuoteResponse](/content/api/components?id=schemasgetQuoteResponse)
 * [getHistoryResponse](/content/api/components?id=schemasgetHistoryResponse)
 
-### Security {docsify-ignore}
-
-* [JWT](/content/api/components?id=securityJWT)
 
 ## Paths
 
