@@ -369,7 +369,7 @@
 | Name | Type | Required | Nullable | Description |
 | ---- | ---- | -------- | -------- | ----------- |
 | symbol| <code>String</code> | true | false | A symbol or code that identifies a financial instrument. |
-| timestamp | <code>String</code> | true | false | The exchange time of the price. Format: HH:MM:SS.FFF. |
+| timestamp | <code>String</code> | true | false | The exchange time of the price. Format: HH.MM.SS.FFF. |
 | tradingDay | <code>String</code> | true | false |  The date of the trade. Format: YYYY-MM-DD.|
 | open | <code>String</code> | true | true | The opening (first) price for the period. |
 | high | <code>String</code> | true | true | The highest traded price for the period. |
